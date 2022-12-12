@@ -128,6 +128,7 @@ public class Deck {
 	    Deck[] decks = new Deck[hands];
 	    for (int i = 0; i < hands; i++) {
 	        decks[i] = new Deck();
+	        decks[i].setTopCard(-1);
 	    }
 	    for (int i = 0; i < cardsPerHand; i++) {
 	        for (int j = 0; j < hands; j++) {
