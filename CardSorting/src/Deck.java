@@ -159,6 +159,7 @@ public class Deck {
 	    for (int i = index; i < this.topCard; i++) {
 	        this.cards[i] = this.cards[i + 1];
 	    }
+	    this.cards[getTopCard()] = pickedCard;
 	    setTopCard(getTopCard()-1);
 
 	    return pickedCard;
