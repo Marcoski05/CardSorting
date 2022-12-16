@@ -38,8 +38,8 @@ public class Deck {
 	 * @param other
 	 */
 	public Deck(Deck other) {
-        cards = new Card[getCards().length];
-        topCard = getTopCard();
+        cards = new Card[other.getCards().length];
+        topCard = other.getTopCard();
 
         for (int i = 0; i < getCards().length; i++) {
             cards[i] = new Card(other.getCards()[i]);
@@ -87,11 +87,52 @@ public class Deck {
 		String output = "";
 		
 		if (getTopCard() == 51) {	        
-	        for (int i = 0; i < cards.length; i++) {
-	            output += cards[i] + "\t";
+	        Card[] clubs = new Card[13];
+	        int clubsIndex = 0;
+	        Card[] diamonds = new Card[13];
+	        int diamondsIndex = 0;
+	        Card[] hearts = new Card[13];
+	        int heartsIndex = 0;
+	        Card[] spades = new Card[13];
+	        int spadesIndex = 0;
+	        
+			for (Card c : cards) {
+	        	if (c.getSuitInt() == 0)
+	        		clubs[clubsIndex++] = c;
+	        	else if (c.getSuitInt() == 1)
+	        		diamonds[diamondsIndex++] = c;
+	        	else if (c.getSuitInt() == 2)
+	        		hearts[heartsIndex++] = c;
+	        	else if (c.getSuitInt() == 3)
+	        		spades[spadesIndex++] = c;
+	        }
+			
+			for (int i = 0; i < clubs.length; i++) {
+	            output += clubs[i];
+	            if (clubs[i].toString().length() > 15)
+	            	output += "\t";
+	            else
+	            	output += "\t\t";
 	            
-	            if ((i + 1) % 4 == 0)
-	            	output += "\n";
+	            output += diamonds[i];
+	            if (diamonds[i].toString().length() > 15)
+	            	output += "\t";
+	            else
+	            	output += "\t\t";
+	            
+	            output += hearts[i];
+	            if (hearts[i].toString().length() > 15)
+	            	output += "\t";
+	            else
+	            	output += "\t\t";
+	            
+	            output += spades[i];
+	            if (spades[i].toString().length() > 15)
+	            	output += "\t";
+	            else
+	            	output += "\t\t";
+	            
+	            output += "\n";
 	        }
 		}
 		else {
@@ -255,5 +296,20 @@ public class Deck {
 	    Card temp = cards[i];
 	    cards[i] = cards[j];
 	    cards[j] = temp;
+	}
+	
+	public static void main(String[] args) {
+		
+		Deck d1 = new Deck();
+		Deck d2t = new Deck(true);
+		Deck d3f = new Deck(false);
+		Deck d4d1 = new Deck(d1);
+		Deck d5d3f = new Deck(d3f);
+		
+		System.out.println(d1.toString());
+		System.out.println(d2t.toString());
+		System.out.println(d3f.toString());
+		System.out.println(d4d1.toString());
+		System.out.println(d5d3f.toString());
 	}
 }
