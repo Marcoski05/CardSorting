@@ -183,6 +183,15 @@ public class Deck {
 	    }
 	}
 	
+	public long selectionBenchmark() {
+		long startTime = System.currentTimeMillis();
+		selectionSort();
+		long endTime = System.currentTimeMillis();
+		
+		long elapsedTime = endTime - startTime;
+		return elapsedTime;
+	}
+	
 	/**
 	 * 
 	 */
@@ -228,6 +237,15 @@ public class Deck {
 	        }
 	    }
 	}
+	
+	public long mergeBenchmark() {
+		long startTime = System.currentTimeMillis();
+		mergeSort();
+		long endTime = System.currentTimeMillis();
+		
+		long elapsedTime = endTime - startTime;
+		return elapsedTime;
+	}
 
 	/**
 	 * @param i
@@ -238,6 +256,4 @@ public class Deck {
 	    cards[i] = cards[j];
 	    cards[j] = temp;
 	}
-
-
 }
