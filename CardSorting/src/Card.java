@@ -183,6 +183,6 @@ public class Card implements Comparable<Card> {
 	}
 	
 	public boolean equals(Object other) {
-		return (other instanceof Deck) && this.compareTo((Card)other) == 0;
+		return (other instanceof Card) && this.compareTo((Card)other) == 0;
 	}
 }

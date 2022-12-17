@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -136,7 +137,7 @@ public class Deck {
 	        }
 		}
 		else {
-			for (int i = 0; i < getTopCard(); i++)
+			for (int i = 0; i <= getTopCard(); i++)
 				output += (i+1) +". "+ cards[i] + "\n";
 		}
 		return output;
@@ -152,7 +153,7 @@ public class Deck {
 	        if (getTopCard() != otherDeck.getTopCard()) {
 	            return false;
 	        }
-	        return getCards().equals(otherDeck.getCards());
+	        return Arrays.equals(getCards(), otherDeck.getCards());
 	    }
 	    return false;
 	}
@@ -224,14 +225,26 @@ public class Deck {
 	    }
 	}
 	
-	public long selectionBenchmark() {
-		long startTime = System.currentTimeMillis();
-		selectionSort();
-		long endTime = System.currentTimeMillis();
-		
-		long elapsedTime = endTime - startTime;
-		return elapsedTime;
-	}
+//	public long selectionBenchmarkSorted() {
+//		long startTime = System.currentTimeMillis();
+//		for (int i = 0; i < 10000; i++)
+//			selectionSort();
+//		long endTime = System.currentTimeMillis();
+//		System.out.println(startTime +" - "+ endTime);
+//		long elapsedTime = endTime - startTime;
+//		return elapsedTime;
+//	}
+//	
+//	public long selectionBenchmarkShuffled() {
+//		long startTime = System.currentTimeMillis();
+//		for (int i = 0; i < 10000; i++)
+//			selectionSort();
+//			shuffle();
+//		long endTime = System.currentTimeMillis();
+//		System.out.println(startTime +" - "+ endTime);
+//		long elapsedTime = endTime - startTime;
+//		return elapsedTime;
+//	}
 	
 	/**
 	 * 
@@ -279,14 +292,25 @@ public class Deck {
 	    }
 	}
 	
-	public long mergeBenchmark() {
-		long startTime = System.currentTimeMillis();
-		mergeSort();
-		long endTime = System.currentTimeMillis();
-		
-		long elapsedTime = endTime - startTime;
-		return elapsedTime;
-	}
+//	public long mergeBenchmarkSorted() {
+//		long startTime = System.currentTimeMillis();
+//		for (int i = 0; i < 10000; i++)
+//			mergeSort();
+//		long endTime = System.currentTimeMillis();
+//		System.out.println(startTime +" - "+ endTime);
+//		long elapsedTime = endTime - startTime;
+//		return elapsedTime;
+//	}
+//	
+//	public long mergeBenchmarkShuffled() {
+//		long startTime = System.currentTimeMillis();
+//		for (int i = 0; i < 10000; i++)
+//			mergeSort();
+//		long endTime = System.currentTimeMillis();
+//		System.out.println(startTime +" - "+ endTime);
+//		long elapsedTime = endTime - startTime;
+//		return elapsedTime;
+//	}
 
 	/**
 	 * @param i
@@ -306,10 +330,50 @@ public class Deck {
 		Deck d4d1 = new Deck(d1);
 		Deck d5d3f = new Deck(d3f);
 		
-		System.out.println(d1.toString());
-		System.out.println(d2t.toString());
-		System.out.println(d3f.toString());
-		System.out.println(d4d1.toString());
-		System.out.println(d5d3f.toString());
+		printAndCompare(d1, d2t, d3f, d4d1, d5d3f);
+		
+		d2t.shuffle();
+		d4d1.shuffle();
+		d3f.selectionSort();
+		d5d3f.mergeSort();
+		
+		printAndCompare(d1, d2t, d3f, d4d1, d5d3f);
+		
+		System.out.println(d3f.pick());
+		System.out.println(d3f.pick());
+		System.out.println(d3f.pick());
+		System.out.println();
+		System.out.println(d3f);
+		
+		System.out.println(Arrays.toString(d1.deal(5, 7)));
+		System.out.println(d1);
+		
+		System.out.println(d3f.deal(6, 10));
+		
+//		System.out.println(d2t.selectionBenchmark());
+//		System.out.println(d5d3f.selectionBenchmark());
+//		System.out.println(d2t.mergeBenchmark());
+//		System.out.println(d5d3f.mergeBenchmark());
+	}
+
+	/**
+	 * @param d1
+	 * @param d2t
+	 * @param d3f
+	 * @param d4d1
+	 * @param d5d3f
+	 */
+	private static void printAndCompare(Deck d1, Deck d2t, Deck d3f, Deck d4d1, Deck d5d3f) {
+		System.out.println(d1);
+		System.out.println(d2t);
+		System.out.println(d3f);
+		System.out.println(d4d1);
+		System.out.println(d5d3f);
+		
+		System.out.println("d1 equals d2t: "+ d1.equals(d2t));
+		System.out.println("d4d1 equals d5d3f: "+ d4d1.equals(d5d3f));
+		System.out.println("d3f equals d5d3f: "+ d3f.equals(d5d3f));
+		
+		System.out.println("\n\n");
 	}
 }
