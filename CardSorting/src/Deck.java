@@ -5,6 +5,10 @@ import java.util.Random;
  * @author Marco Cecchi-Rivas
  *
  */
+/**
+ * @author mcecc
+ *
+ */
 public class Deck {
 	
 	private Card[] cards;
@@ -26,7 +30,7 @@ public class Deck {
 	}
 	
 	/**
-	 * @param sorted
+	 * @param sorted whether or not the made Deck should be sorted
 	 */
 	public Deck(boolean sorted) {
 	    this();
@@ -36,7 +40,7 @@ public class Deck {
 	}
 	
 	/**
-	 * @param other
+	 * @param other the Deck being copied
 	 */
 	public Deck(Deck other) {
         cards = new Card[other.getCards().length];
@@ -62,7 +66,7 @@ public class Deck {
 	}
 	
 	/**
-	 * @param tC
+	 * @param tC new topCard
 	 */
 	public void setTopCard(int tC) {
 		topCard = tC;
@@ -75,14 +79,12 @@ public class Deck {
 	    Random rand = new Random();
 	    for (int i = 0; i < cards.length; i++) {
 	        int index = rand.nextInt(cards.length);
-	        Card temp = cards[i];
-	        cards[i] = cards[index];
-	        cards[index] = temp;
+	        swap(i, index);
 	    }
 	}
 	
 	/**
-	 *
+	 * Prints the cards in four columns by suit, or one column if not a full deck
 	 */
 	public String toString() {
 		String output = "";
@@ -144,7 +146,7 @@ public class Deck {
 	}
 	
 	/**
-	 *@param an object, preferably a Deck
+	 *@param other an object, preferably a Deck
 	 *@return if the two decks are equal
 	 */
 	public boolean equals(Object other) {
@@ -159,8 +161,8 @@ public class Deck {
 	}
 	
 	/**
-	 * @param hands
-	 * @param cardsPerHand
+	 * @param hands the number of hands to be created
+	 * @param cardsPerHand the number of cards in each hand
 	 * @return Deck[] array of the specified size and number of hands
 	 */
 	public Deck[] deal (int hands, int cardsPerHand) {
@@ -182,7 +184,7 @@ public class Deck {
 	}
 
 	/**
-	 * @param card
+	 * @param card the Card to be added to the deck
 	 */
 	public void addCard(Card card) {
 		setTopCard(getTopCard()+1);
@@ -208,7 +210,7 @@ public class Deck {
 	}
 	
 	/**
-	 * 
+	 * Uses a selection sort algorithm to sort the Deck
 	 */
 	public void selectionSort() {
 	    for (int i = 0; i < cards.length; i++) {
@@ -219,9 +221,7 @@ public class Deck {
 	            }
 	        }
 
-	        Card temp = cards[i];
-	        cards[i] = cards[minIndex];
-	        cards[minIndex] = temp;
+	        swap(i, minIndex);
 	    }
 	}
 	
@@ -247,7 +247,7 @@ public class Deck {
 //	}
 	
 	/**
-	 * 
+	 * Uses a merge sort algorithm to sort the Deck
 	 */
 	public void mergeSort() {
 	    mergeSort(0, cards.length - 1);
@@ -322,6 +322,11 @@ public class Deck {
 	    cards[j] = temp;
 	}
 	
+	
+	/**
+	 * @param args unused
+	 * runs tests
+	 */
 	public static void main(String[] args) {
 		
 		Deck d1 = new Deck();

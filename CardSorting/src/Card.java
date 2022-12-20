@@ -18,14 +18,18 @@ public class Card implements Comparable<Card> {
 	private Suits suit;
 	private int rank;
 
+	/**
+	 * Default no args constructor
+	 * Creates Ace of Spades
+	 */
 	public Card() {
 		suit = Suits.SPADES;
 		rank = 1;
 	}
 
 	/**
-	 * @param suit
-	 * @param rank
+	 * @param suit Card's suit as an int
+	 * @param rank Card's rank as an int
 	 */
 	public Card(int suit, int rank) {
 		super();
@@ -34,8 +38,8 @@ public class Card implements Comparable<Card> {
 	}
 
 	/**
-	 * @param suit
-	 * @param rank
+	 * @param suit Card's suit as a String
+	 * @param rank Card's rank as a String
 	 */
 	public Card(String suit, String rank) {
 
@@ -60,8 +64,8 @@ public class Card implements Comparable<Card> {
 	}
 
 	/**
-	 * @param suit
-	 * @param rank
+	 * @param suit Card's suit as a String
+	 * @param rank Card's rank as an int
 	 */
 	public Card(String suit, int rank) {
 		this.suit = Suits.valueOf(suit);
@@ -69,8 +73,8 @@ public class Card implements Comparable<Card> {
 	}
 
 	/**
-	 * @param suit
-	 * @param rank
+	 * @param suit Card's suit as an int
+	 * @param rank Card's rank as a String
 	 */
 	public Card(int suit, String rank) {
 		this.suit = Suits.values()[suit];
@@ -94,7 +98,7 @@ public class Card implements Comparable<Card> {
 	}
 
 	/**
-	 * @param card
+	 * @param card Card being copied
 	 */
 	public Card(Card card) {
 		suit = Suits.valueOf(card.getSuit());
