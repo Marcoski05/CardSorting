@@ -43,7 +43,7 @@ public class Card implements Comparable<Card> {
 	 */
 	public Card(String suit, String rank) {
 
-		this.suit = Suits.valueOf(suit);
+		this.suit = Suits.valueOf(suit.toUpperCase());
 		switch (rank.toUpperCase()) {
 		case "ACE":
 			this.rank = 1;
@@ -68,7 +68,7 @@ public class Card implements Comparable<Card> {
 	 * @param rank Card's rank as an int
 	 */
 	public Card(String suit, int rank) {
-		this.suit = Suits.valueOf(suit);
+		this.suit = Suits.valueOf(suit.toUpperCase());
 		this.rank = rank;
 	}
 
